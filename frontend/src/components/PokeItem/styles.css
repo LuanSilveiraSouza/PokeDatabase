@@ -1,0 +1,22 @@
+.bg {
+    background-color: #cccccc;
+    border: solid 3px black;
+    border-radius: 3vw;
+    color: black;
+}
+
+.trash-btn{
+    color: #e61d0f;
+}
+
+.trash-btn:hover{
+    color: #c80f00;
+}
+
+.pen-btn{
+    color: #0aaa1f;
+}
+
+.pen-btn:hover{
+    color: #0a8219;
+}

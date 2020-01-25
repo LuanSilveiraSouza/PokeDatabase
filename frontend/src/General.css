@@ -1,0 +1,24 @@
+body {
+    background-repeat: repeat;
+    background-image: url(img/pokeball.png);
+    background-size: 10vw;
+    background-color: #f0f0f0;
+}
+
+.border-red {
+    border: solid red 1px;
+}
+
+.screen {
+    background-color: #f0f0f0;
+    min-height: 1000px;
+    border: solid 3px black;
+    border-radius: 1%;
+}
+
+.bg-nav{
+    background-color: #cccccc;
+    border: solid 3px black;
+    border-radius: 3vw;
+    color: black;
+}
