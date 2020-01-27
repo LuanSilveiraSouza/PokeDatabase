@@ -1,30 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Select from 'react-select';
 import pokeApi from '../../services/pokeApi';
 import api from '../../services/api';
 
-function Form() {
+function Form(props) {
 
     const genders = [
                     {value: 'female', label: 'feminino'},
                     {value: 'male', label: 'masculino'},
                     {value: 'genderless', label: 'Sem Gênero'},
                     ];
+    const pokemons = props.pokemons;
+    const natures = props.natures;
+    const items = props.items;
 
-    const [pokemons, setPokemons] = useState([]);
     const [pokemon, setPokemon] = useState({});
 
     const [gender, setGender] = useState({});
 
     const [isShiny, setShiny] = useState();
 
-    const [natures, setNatures] = useState([]);
     const [nature, setNature] = useState({});
 
     const [abilities, setAbilities] = useState([]);
     const [ability, setAbility] = useState({});
 
-    const [items, setItems] = useState([]);
     const [item, setItem] = useState({});
 
     const [moves, setMoves] = useState([]);
@@ -33,36 +33,12 @@ function Form() {
     const [move3, setMove3] = useState({});
     const [move4, setMove4] = useState({});
 
-    useEffect(() => {
-        async function loadData() {
-            let res = await pokeApi.get('pokemon/?offset=0&limit=807');
-            
-            res.data.results.map(pokemon => (
-                setPokemons(pokemons => [...pokemons, {value: pokemon.url, label: pokemon.name}])
-            ));
-
-            res = await pokeApi.get('item-attribute/7/');
-
-            res.data.items.map(item => (
-                setItems(items => [...items, {value: item.url, label: item.name}])
-            ));
-
-            res = await pokeApi.get('nature?offset=0&limit=25');
-
-            res.data.results.map(nature => (
-                setNatures(natures => [...natures, {value: nature.url, label: nature.name}])
-            ));
-        }
-        loadData();
-    }, []);
-
     async function handleChangePokemon(pokemon) {
         const res = await pokeApi.get(`pokemon/${pokemon.label}`);
 
         setPokemon(res.data);
 
-        setAbility(null);
-        setAbility([]);
+        setAbilities([]);
         res.data.abilities.map(ability => (
             setAbilities(abilities => [...abilities, {value: ability.ability.url, label: ability.ability.name}])
         ));
@@ -91,14 +67,19 @@ function Form() {
     };
 
     function handleMove1(move1) {
-        setMove1(move1);
+        if(move1 !== move2 && move1 !== move3 && move1 !== move4){
+            setMove1(move1);
+        }
     };
+
     function handleMove2(move2) {
         setMove2(move2);
     };
+
     function handleMove3(move3) {
         setMove3(move3);
     };
+
     function handleMove4(move4) {
         setMove4(move4);
     };
@@ -125,10 +106,14 @@ function Form() {
             ],
             "shiny": isShiny
         };
+        
+        if(submit.name && submit.pkdx && submit.nature && submit.gender && submit.ability){
+            await api.post('/pokemon', submit);
 
-        const res = await api.post('/pokemon', submit);
-
-        alert("Adicionado"+ res);
+            alert("Pokémon Adicionado");
+        } else{
+            alert("Pokémon incompleto");
+        }
 
     }
 
@@ -187,8 +172,8 @@ function Form() {
                     </div>
                 </div>
             </div>
-            <div className="justify-content-center">
-                <button type="submit" value="submit" className="btn btn-success">Adicionar</button>
+            <div className="d-flex justify-content-center">
+                <button type="submit" value="submit" className="btn btn-success btn-lg">Adicionar</button>
             </div>
         </form>
     );

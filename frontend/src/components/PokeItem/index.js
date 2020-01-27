@@ -56,7 +56,8 @@ function PokeItem( props ) {
                         <div className="col pt-3">
                             <p>Nature: {pokemon.nature}</p>
                             <p>Ability: {pokemon.ability}</p>
-                            <p>Item: {pokemon.item}</p>
+                            <p>Item: <img alt="" src={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/'+pokemon.item+'.png'}/> 
+                            {pokemon.item}</p>
                         </div>
                     </div>
                 </div>
