@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, StatusBar, View} from 'react-native';
-
+import GLOBAL from './src/Global';
 import Routes from './src/routes';
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   statusBar: {
-    backgroundColor: '#ffffff',
+    backgroundColor: GLOBAL.COLOR.WHITE,
     height: StatusBar.currentHeight,
   },
 });

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 
-import apiImages from '../../services/apiImages';
-
 function Item(props) {
     const pokemon = props.pokemon;
 
