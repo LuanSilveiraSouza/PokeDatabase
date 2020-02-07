@@ -8,8 +8,7 @@ function Main() {
     return (
         <View style={styles.container}>
             <Image source={require ('../../assets/pokemon.png')} style={styles.img}/>
-
-            <Form/>
+            <Form/> 
         </View>
     ); 
 }

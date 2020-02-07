@@ -13,16 +13,7 @@ function Item(props) {
             <View style={styles.container2}>
                 <Text style={styles.title}>{pokemon.name} #{pokemon.pkdx}</Text>
                 <View style={styles.infoBox}>
-                    <View>
                         <Text style={styles.infoText}>Id: {pokemon._id}</Text>
-                        <Text style={styles.infoText}>Gender: {pokemon.gender}</Text>
-                        <Text style={styles.infoText}>Shiny: {pokemon.shiny}</Text>
-                    </View>
-                    <View>
-                        <Text style={styles.infoText} >Nature: {pokemon.nature}</Text>
-                        <Text style={styles.infoText} >Ability: {pokemon.ability}</Text>
-                        <Text style={styles.infoText} >Item: {pokemon.item}</Text>
-                    </View>
                 </View>
             </View>
         </View>
@@ -44,6 +35,7 @@ const styles = StyleSheet.create({
         margin: 5,
         padding: 5,
         flexDirection: "row",
+        height: 80,
     },
     img: {
         flex: 1,
@@ -56,11 +48,8 @@ const styles = StyleSheet.create({
     },
     infoText: {
         textAlign: "center",
+        fontSize: 18,
     },
-    infoBox: {
-        flex: 1,
-        flexDirection: "row",
-    }
 });
 
 export default Item;

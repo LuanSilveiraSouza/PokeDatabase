@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, SafeAreaView, FlatList} from 'react-native';
 import Item from './components/Item';
-
+import GLOBAL from '../Global';
 import api from '../services/api';
 
 function List() {

@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, Modal, TouchableHighlight, View} from 'react-native';
-import {RadioButton} from 'react-native-paper';
+import {RadioButton, Searchbar} from 'react-native-paper';
 import GLOBAL from '../../Global';
 import pokeApi from '../../services/pokeApi';
 
 function Form() {
 
-    const [pokemon, setPokemon] = useState([]);
+    const [pokemon, setPokemon] = useState('Nome do Pokémon');
     const [pokemons, setPokemons] = useState([]);
 
     const [gender, setGender] = useState('female');
@@ -32,7 +32,6 @@ function Form() {
         <>
             <Text style={[{fontSize:30}, styles.text]}>Adicionar Pokémon</Text>
 
-            <Text style={[styles.infoText, styles.text]}>Nome do Pokémon</Text>
             <Modal
                 animationType="fade"
                 transparent={false}
@@ -41,7 +40,11 @@ function Form() {
                     setModalVisible(!modalVisible);
                 }}>
                 <View>
-                    <View>
+                    <Searchbar 
+                        placeholder="Pesquisar..."
+                        style={{marginTop: 30, margin:10}}
+                    />
+                    <View style={{alignItems:'center'}}>
                     <TouchableHighlight
                         style={styles.input}
                         onPress={() => {
@@ -54,11 +57,11 @@ function Form() {
             </Modal>
 
             <TouchableHighlight
-                style={styles.input}
+                style={[styles.input, {width:200}]}
                 underlayColor={GLOBAL.COLOR.LIGHTBLUE}
                 onPress={() => {setModalVisible(true);}}
             >
-                <Text style={styles.inputText}>Pesquisar...</Text>
+                <Text style={styles.inputText}>{pokemon}</Text>
             </TouchableHighlight>
 
             <View style={styles.splitContainer}>
@@ -108,40 +111,30 @@ function Form() {
             </View>
             
             <View style={styles.splitContainer}>
-                <View>
-                    <Text style={[styles.infoText, styles.text, {alignSelf:'center'}]}>Nature</Text>
-
-                    <TouchableHighlight
-                        style={styles.input}
-                        underlayColor={GLOBAL.COLOR.LIGHTBLUE}
-                        onPress={() => {setModalVisible(true);}}
-                    >
-                        <Text style={styles.inputText}>Pesquisar...</Text>
-                    </TouchableHighlight>
-                </View>
-                <View>
-                    <Text style={[styles.infoText, styles.text, {alignSelf:'center'}]}>Abilidade</Text>
-
-                    <TouchableHighlight
-                        style={styles.input}
-                        underlayColor={GLOBAL.COLOR.LIGHTBLUE}
-                        onPress={() => {setModalVisible(true);}}
-                    >
-                        <Text style={styles.inputText}>Pesquisar...</Text>
-                    </TouchableHighlight>   
-                </View>
+                <TouchableHighlight
+                    style={styles.input}
+                    underlayColor={GLOBAL.COLOR.LIGHTBLUE}
+                    onPress={() => {setModalVisible(true);}}
+                >
+                    <Text style={styles.inputText}>Nature</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    style={styles.input}
+                    underlayColor={GLOBAL.COLOR.LIGHTBLUE}
+                    onPress={() => {setModalVisible(true);}}
+                >
+                    <Text style={styles.inputText}>Abilidade</Text>
+                </TouchableHighlight>   
             </View>
         
-            <Text style={[styles.infoText, styles.text, {alignSelf:'center'}]}>Item</Text>
             <TouchableHighlight
                 style={styles.input}
                 underlayColor={GLOBAL.COLOR.LIGHTBLUE}
                 onPress={() => {setModalVisible(true);}}
             >
-                <Text style={styles.inputText}>Pesquisar...</Text>
+                <Text style={styles.inputText}>Item</Text>
             </TouchableHighlight>
 
-            <Text style={[styles.infoText, styles.text, {alignSelf:'center'}]}>Moves</Text>
             <View style={styles.splitContainer}>
                 <TouchableHighlight
                     style={[styles.input, styles.smallInput]}
@@ -171,9 +164,15 @@ function Form() {
                 >
                     <Text style={styles.inputText}>Move 4</Text>
                 </TouchableHighlight>
-               
             </View>
-            
+
+            <TouchableHighlight
+            style={styles.input}
+            underlayColor={GLOBAL.COLOR.LIGHTBLUE}
+            onPress={() => {setModalVisible(true);}}
+            >   
+                <Text style={styles.inputText}>Adicionar</Text>
+            </TouchableHighlight>
         </>
     );
 }
@@ -199,6 +198,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         height: 40,
         width: 150,
+        marginTop: 15,
     },
     inputText: {
         color: GLOBAL.COLOR.WHITE,
